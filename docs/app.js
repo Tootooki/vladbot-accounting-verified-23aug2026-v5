@@ -1,13 +1,14 @@
 const CAPTURE_PARAMS=new URLSearchParams(location.search),CAPTURE_MODE=CAPTURE_PARAMS.get('capture')==='1',CAPTURE_CATEGORY=CAPTURE_PARAMS.get('category');if(CAPTURE_MODE)document.body.classList.add('capture-mode');
-const PERIODS=[["all","All periods","Combined view of every period"],["1d","1 Day","07sep2026"],["7d","7 Days","03jun2026_09jun2026"],["30d","30 Days","11may2026_09jun2026"],["60d","60 Days","11apr2026_09jun2026"],["90d","90 Days","12mar2026_09jun2026"],["180d","180 Days","12dec2025_09jun2026"],["365d","365 Days","10jun2025_09jun2026"],["range","Range","07jun2026_09jun2026"]];
+const PERIODS=[["all","All periods","Combined view of every period"],["1d","1 Day","23aug2026"],["7d","7 Days","03jun2026_09jun2026"],["30d","30 Days","11may2026_09jun2026"],["60d","60 Days","11apr2026_09jun2026"],["90d","90 Days","12mar2026_09jun2026"],["180d","180 Days","12dec2025_09jun2026"],["365d","365 Days","10jun2025_09jun2026"],["range","Range","07jun2026_09jun2026"]];
 const CATEGORIES=[["all","All products","Pistachio, Kataifi & Chocos","#f8c94c"],["pistachio","Pistachio","Pistachio products only","#87cf63"],["kataifi","Kataifi","Kataifi products only","#ff9e5f"],["choco","Chocos","Chocolate products only","#c98cff"]];
-const RANGES={"1d":[6,23],range:[24,41],"7d":[42,59],"30d":[60,77],"60d":[78,95],"90d":[96,113],"180d":[114,131],"365d":[132,149]};
-const PERIOD_STARTS=[6,24,42,60,78,96,114,132];
-const METRICS_PER_PERIOD=18;
+const RANGES={"1d":[4,23],range:[24,41],"7d":[42,59],"30d":[60,77],"60d":[78,95],"90d":[96,113],"180d":[114,131],"365d":[132,149]};
+const HISTORICAL_PERIOD_STARTS=[24,42,60,78,96,114,132];
+const HISTORICAL_METRICS_PER_PERIOD=18;
 const ZOOM_STEPS=[5,8,10,12,15,20,25,30,40,50,60,70,80,90,100,110,125,150,175,200];
-const DATED_PERIODS=[{period:'1DAY',date:'07sep2026'},{period:'RANGE',date:'07jun2026_09jun2026'},{period:'7DAYS',date:'03jun2026_09jun2026'},{period:'30DAYS',date:'11may2026_09jun2026'},{period:'60DAYS',date:'11apr2026_09jun2026'},{period:'90DAYS',date:'12mar2026_09jun2026'},{period:'180DAYS',date:'12dec2025_09jun2026'},{period:'365DAYS',date:'10jun2025_09jun2026'}];
-const METRIC_HEADERS=['PRONE','SALES$','ADS$','SALESQTY','CTR','CPC','ACOS','TACOS','REFUNQTY','REFUN$','VELDAYS','VELNEED','PROMO','REIMB','PRA+P','PRALL','NETPAY','SHIP'];
-const LIVE_HEADERS={2:'PRICE',3:'COG',4:'BSR',5:'STOCK'};
+const DATED_PERIODS=[{period:'1DAY',date:'23aug2026'},{period:'RANGE',date:'07jun2026_09jun2026'},{period:'7DAYS',date:'03jun2026_09jun2026'},{period:'30DAYS',date:'11may2026_09jun2026'},{period:'60DAYS',date:'11apr2026_09jun2026'},{period:'90DAYS',date:'12mar2026_09jun2026'},{period:'180DAYS',date:'12dec2025_09jun2026'},{period:'365DAYS',date:'10jun2025_09jun2026'}];
+const ONE_DAY_METRIC_HEADERS=['PRF_ONE','BSR','SALES$','ADS$','SALESQTY','CTR','CPC','ACOS','TACOS','REFUNQTY','REFUN$','VELDAYS','VELNEED','PROMO','REIMB','PRF_A+P','PRF_ALL','NETPAY','SHIP','STOCK'];
+const HISTORICAL_METRIC_HEADERS=['PRF_ONE','SALES$','ADS$','SALESQTY','CTR','CPC','ACOS','TACOS','REFUNQTY','REFUN$','VELDAYS','VELNEED','PROMO','REIMB','PRF_A+P','PRF_ALL','NETPAY','SHIP'];
+const LIVE_HEADERS={2:'PRICE',3:'COG'};
 const PRODUCT_NAMES={2:'BUTTER200',3:'CREAM1KG',4:'CREAM200',5:'CREAM5KG',6:'SAUCE700',9:'MINTDUB6',10:'STRAC6',11:'DRIED10KG',12:'DRIED180',13:'DRIED180V2',14:'DRIED400',15:'DRIED5KG',16:'ROAST10KG',17:'ROAST5KG',18:'ROAST180',19:'ROAST400',22:'12PACK',23:'BLUE2',24:'BROWN2',25:'CARAMEL',26:'COCO2',27:'COOKIE',28:'DARK2',29:'DARK200',30:'HAZEL2',31:'MATCHA2',32:'MILK200',33:'ORANGE2',34:'PUMP2',35:'RASP160',36:'STRAW2',37:'WHITE200',38:'MILK200V2',39:'MILK100',40:'WHITE100',41:'WHITE2',42:'WHITE200V2',43:'MILK2',44:'WHITE200V3',45:'BLUE100',46:'BROWN100',47:'COOKIE2',48:'RASP24'};
 const rgb=(c,f)=>c?'rgb('+c[0]+' '+c[1]+' '+c[2]+')':f;
 const numericCellValue=value=>{const raw=String(value||'').trim();if(!raw)return null;const parenthesized=/^\(.*\)$/.test(raw),normalized=raw.replace(/[,$%\s]/g,'').replace(/[()]/g,'');if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized))return null;const number=Number(normalized);if(!Number.isFinite(number))return null;return parenthesized?-Math.abs(number):number};
@@ -16,8 +17,8 @@ const align=v=>v==='LEFT'?'flex-start':v==='RIGHT'?'flex-end':'center';
 const valign=v=>v==='TOP'?'flex-start':v==='BOTTOM'?'flex-end':'center';
 const textalign=v=>v==='LEFT'?'left':v==='RIGHT'?'right':'center';
 const isHeaderRow=row=>row[0]&&row[0].v==='IMG'&&row[1]&&row[1].v==='SKU'&&row[2]&&row[2].v==='PRICE'&&row[3]&&row[3].v==='COG';
-const datedHeaderFor=(cell,ci)=>{if(ci<6)return null;const period=DATED_PERIODS[Math.floor((ci-6)/METRICS_PER_PERIOD)],metric=METRIC_HEADERS[(ci-6)%METRICS_PER_PERIOD];return period&&metric?{period:period.period,metric,date:period.date}:null};
-const liveHeaderFor=ci=>LIVE_HEADERS[ci]?{period:'LIVE',metric:LIVE_HEADERS[ci],date:'07sep2026'}:null;
+const datedHeaderFor=(cell,ci)=>{if(ci<4)return null;const oneDay=ci<24,periodIndex=oneDay?0:1+Math.floor((ci-24)/HISTORICAL_METRICS_PER_PERIOD),metricIndex=oneDay?ci-4:(ci-24)%HISTORICAL_METRICS_PER_PERIOD,period=DATED_PERIODS[periodIndex],metric=(oneDay?ONE_DAY_METRIC_HEADERS:HISTORICAL_METRIC_HEADERS)[metricIndex];return period&&metric?{period:period.period,metric,date:period.date}:null};
+const liveHeaderFor=ci=>LIVE_HEADERS[ci]?{period:'LIVE',metric:LIVE_HEADERS[ci],date:'23aug2026'}:null;
 const CATEGORY_LABELS={PISTACHIO_TOTALS:'PISTACHIO',KATAIFI_TOTALS:'KATAIFI',CHOCO_TOTALS:'CHOCOS'};
 const CATEGORY_KEYS={PISTACHIO_TOTALS:'pistachio',KATAIFI_TOTALS:'kataifi',CHOCO_TOTALS:'choco'};
 const prepareRow=(row,isHeader,sourceRowIndex,labelType)=>{const totalCell=row.slice(0,4).find(cell=>cell.v&&cell.v.endsWith('_TOTALS')),totalKey=totalCell&&totalCell.v,categoryLabel=totalKey&&CATEGORY_LABELS[totalKey];return row.map((cell,ci)=>{if(isHeader&&ci===0)return{...cell,v:''};if(isHeader&&ci===1)return{...cell,v:labelType==='name'?'NAME':'SKU'};if(categoryLabel&&ci===1)return{...cell,v:categoryLabel,fs:8,h:'CENTER',va:'MIDDLE'};if(categoryLabel&&(ci===0||(ci>=2&&ci<=3)))return{...cell,v:''};if(ci===1&&labelType==='name'&&PRODUCT_NAMES[sourceRowIndex])return{...cell,v:PRODUCT_NAMES[sourceRowIndex]};return cell})};
@@ -33,13 +34,13 @@ Promise.all([fetch('sheet-data.json').then(r=>r.json()),fetch('sheet-layout.json
   let selectedPeriod='1d',selectedCategory='all',columnLayout='period',labelType='name',zoomLevel=150,viewMode='mobile',compactHeaders=true,activeMenuTrigger=null,activePanel=null,canReturnToSettings=false;
   if(CAPTURE_MODE){selectedCategory=['pistachio','kataifi','choco'].includes(CAPTURE_CATEGORY)?CAPTURE_CATEGORY:'all';zoomLevel=100}
   const visibleColumns=()=>{
-    const base=[0,1,2,3,4,5];
+    const base=[0,1,2,3];
     if(selectedPeriod!=='all')return[...base,...Array.from({length:RANGES[selectedPeriod][1]-RANGES[selectedPeriod][0]+1},(_,i)=>RANGES[selectedPeriod][0]+i)];
     if(columnLayout==='period')return columns.map((_,i)=>i);
-    const metricColumns=[];
-    for(let metricOffset=0;metricOffset<METRICS_PER_PERIOD;metricOffset+=1){
-      PERIOD_STARTS.forEach(periodStart=>metricColumns.push(periodStart+metricOffset));
-    }
+    const metricColumns=[4,...HISTORICAL_PERIOD_STARTS];
+    metricColumns.push(5);
+    for(let metricOffset=1;metricOffset<HISTORICAL_METRICS_PER_PERIOD;metricOffset+=1){metricColumns.push(5+metricOffset,...HISTORICAL_PERIOD_STARTS.map(periodStart=>periodStart+metricOffset));}
+    metricColumns.push(23);
     return[...base,...metricColumns];
   };
   const adaptiveWidths=renderRows=>columns.map((_fallbackWidth,ci)=>{if(ci===0)return 20;let widest=0;renderRows.forEach(({row,isHeader})=>{const cell=row[ci];if(!cell)return;const headerParts=isHeader?datedHeaderFor(cell,ci):null,liveParts=isHeader?liveHeaderFor(ci):null,structuredHeader=headerParts||liveParts,lines=structuredHeader?(compactHeaders?[{text:structuredHeader.metric,size:9,weight:700}]:[{text:structuredHeader.period,size:7,weight:800},{text:structuredHeader.metric,size:7,weight:800},{text:structuredHeader.date,size:5.8,weight:700}]):[{text:String(cell.v||'').replace(/\s+/g,' '),size:compactHeaders?9:(cell.fs||9),weight:compactHeaders?700:(cell.b?700:400)}];lines.forEach(({text,size,weight})=>{measureContext.font=weight+' '+size+'px Arial';widest=Math.max(widest,measureContext.measureText(text).width+6)})});const fittedWidth=Math.max(18,Math.ceil(widest));return ci===1?Math.min(126,Math.max(84,fittedWidth)):fittedWidth});
