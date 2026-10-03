@@ -1116,3 +1116,17 @@ body.capture-mode .mobile-tab-bar {
     grid-template-columns: var(--print-columns);
   }
 }
+
+/* Preserve underscore/descender glyphs and separate accounting headers. */
+.sheet-cell.header-cell:not(.image-column) {
+  padding-inline: calc(6px * var(--sheet-scale));
+  box-shadow: inset -1px 0 rgba(255, 255, 255, .16);
+}
+.sheet-grid.compact-headers .header-cell,
+.sheet-grid.compact-headers .header-cell span {
+  line-height: 1.3 !important;
+}
+.dated-header-metric, .live-header-metric {
+  line-height: 1.3;
+  white-space: nowrap;
+}
