@@ -1,0 +1,30 @@
+{
+  "period": [
+    "2026-09-24",
+    "2026-09-30"
+  ],
+  "timezone": "America/Phoenix",
+  "days": 7,
+  "stockBsrAsOf": "2026-10-02",
+  "feesEstimatedAsOf": "2026-10-03",
+  "adsAsOf": "2026-10-03",
+  "trackedOrderCount": 283,
+  "trackedSoldPacks": 304,
+  "chocolateShipments": 40,
+  "labelCost": 394.71,
+  "plannedIceQty": 165,
+  "plannedIceCost": 59.4,
+  "packCostEstimate": 24.8,
+  "missingCogSoldSkus": [
+    "Choco-Raspberry-160g-NEW-Fbm",
+    "Choco-Raspberry-160g-NEW",
+    "Choco-12pack-1200g-fbm"
+  ],
+  "accountCharges": {
+    "AmazonUpstreamStorageTransportationFee": -30.27,
+    "AmazonUpstreamProcessingFee": -36.4,
+    "FBAInboundTransportationFee": -771.96,
+    "FBARemovalFee": -21.84
+  },
+  "accountChargesTotal": -860.47
+}
