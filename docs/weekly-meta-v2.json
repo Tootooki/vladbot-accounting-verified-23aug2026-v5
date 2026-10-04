@@ -1,0 +1,27 @@
+{
+  "period": [
+    "2026-09-24",
+    "2026-09-30"
+  ],
+  "timezone": "America/Phoenix",
+  "days": 7,
+  "stockBsrAsOf": "2026-10-02",
+  "feesEstimatedAsOf": "2026-10-03",
+  "adsAsOf": "2026-10-03",
+  "trackedOrderCount": 283,
+  "trackedSoldPacks": 304,
+  "chocolateShipments": 40,
+  "labelCost": 394.71,
+  "plannedIceQty": 165,
+  "plannedIceCost": 59.4,
+  "packCostEstimate": 24.8,
+  "costApproval": "Adil October 4: Raspberry $3.75/bar; confirmed bundles use selected landed cost \u00d7 bar count. Applied to September 24\u201330 by owner authorization.",
+  "missingCogSoldSkus": [],
+  "accountCharges": {
+    "AmazonUpstreamStorageTransportationFee": -30.27,
+    "FBARemovalFee": -21.84,
+    "FBAInboundTransportationFee": -771.96,
+    "AmazonUpstreamProcessingFee": -36.4
+  },
+  "accountChargesTotal": -860.47
+}
