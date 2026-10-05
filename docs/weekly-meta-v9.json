@@ -1,0 +1,198 @@
+{
+  "period": [
+    "2026-09-24",
+    "2026-09-30"
+  ],
+  "timezone": "America/Phoenix",
+  "days": 7,
+  "stockBsrAsOf": "2026-10-02",
+  "feesEstimatedAsOf": "2026-10-03",
+  "adsAsOf": "2026-10-03",
+  "trackedOrderCount": 283,
+  "trackedSoldPacks": 304,
+  "chocolateShipments": 40,
+  "labelCost": 394.71,
+  "plannedIceQty": 165,
+  "plannedIceCost": 59.4,
+  "packCostEstimate": 24.8,
+  "costApproval": "Adil October 4: Raspberry $3.75/bar; confirmed bundles use selected landed cost \u00d7 bar count. Applied to September 24\u201330 by owner authorization.",
+  "missingCogSoldSkus": [],
+  "accountCharges": {
+    "AmazonUpstreamStorageTransportationFee": -30.27,
+    "FBARemovalFee": -21.84,
+    "FBAInboundTransportationFee": -771.96,
+    "AmazonUpstreamProcessingFee": -36.4
+  },
+  "accountChargesTotal": -860.47,
+  "velocity": {
+    "expiry": "2027-11-15",
+    "cutoffDaysBeforeExpiry": 50,
+    "stockSource": "Published INVENTORY warehouse ledger",
+    "stockAsOf": "2026-10-03",
+    "daysToCutoff": 358,
+    "stockLedgerSha256": "5e6c27abb5c2a3fb73c91faa925b0f8eea87361049b61e396944609f9a524f96",
+    "sharedPools": "Per-SKU pack capacity and daily target are alternative ways to clear one shared pool; never summed. VEL_DAYS combines weekly pack-to-bar consumption. Dedicated 12-pack stock separate. Unconfirmed pack identity remains blank.",
+    "additionalExpiryAssumptions": {
+      "approvedBy": "Owner in this ACCOUNTING_MASTER chat, October 5, 2026",
+      "rule": "Apply each known AWD expiry to the full report stock of that exact SKU. This is an owner-approved modeling assumption, not verified lot mapping.",
+      "rows": [
+        {
+          "sku": "Cone-StrawCookie-6pack-450g",
+          "stock": 31.0,
+          "expiration": "2027-03-19",
+          "days": 118,
+          "dailyTarget": 1,
+          "awdDatedStock": 1,
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Dried-Kadayif-10KG",
+          "stock": 69.0,
+          "expiration": "2027-12-12",
+          "days": 386,
+          "dailyTarget": 1,
+          "awdDatedStock": 30,
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Dried-Kadayif-180gm",
+          "stock": 10775.0,
+          "expiration": "2027-06-16",
+          "days": 207,
+          "dailyTarget": 53,
+          "awdDatedStock": 9300,
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "FBA197RFWV6M.missing1",
+          "stock": 532.0,
+          "expiration": "2027-06-16",
+          "days": 207,
+          "dailyTarget": 3,
+          "awdDatedStock": 9300,
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Dried-Kadayif-400gm",
+          "stock": 17985.0,
+          "expiration": "2027-06-16",
+          "days": 207,
+          "dailyTarget": 87,
+          "awdDatedStock": 13800,
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Dried-Kadayif-5KG",
+          "stock": 262.0,
+          "expiration": "2027-12-12",
+          "days": 386,
+          "dailyTarget": 1,
+          "awdDatedStock": 179,
+          "ownerApprovedAssumption": true
+        }
+      ]
+    },
+    "receivedShipmentExpiryAssumptions": {
+      "rule": "Owner-approved: apply the earliest known positive-received AWD shipment expiry to full report stock for the exact SKU. Historical receipt is confirmed; current lot coverage is an assumption.",
+      "rows": [
+        {
+          "sku": "Cone-DubaiMint-6pack-450g",
+          "stock": 218.0,
+          "expiration": "2027-03-19",
+          "days": 118,
+          "dailyTarget": 2,
+          "receivedShipmentEvidence": [
+            {
+              "sku": "Cone-DubaiMint-6pack-450g",
+              "expiration": "2027-03-19",
+              "shipmentId": "STAR-XSTKUVYDJSGGC",
+              "receivedCases": 559
+            }
+          ],
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Roasted-Kadayif-10KG",
+          "stock": 9.0,
+          "expiration": "2027-12-12",
+          "days": 386,
+          "dailyTarget": 1,
+          "receivedShipmentEvidence": [
+            {
+              "sku": "Roasted-Kadayif-10KG",
+              "expiration": "2027-12-12",
+              "shipmentId": "STAR-QSW73N2QRYHYW",
+              "receivedCases": 240
+            }
+          ],
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Roasted-Kadayif-5KG",
+          "stock": 88.0,
+          "expiration": "2027-06-15",
+          "days": 206,
+          "dailyTarget": 1,
+          "receivedShipmentEvidence": [
+            {
+              "sku": "Roasted-Kadayif-5KG",
+              "expiration": "2027-06-15",
+              "shipmentId": "STAR-XKTUYCR4N3QZK",
+              "receivedCases": 16
+            },
+            {
+              "sku": "Roasted-Kadayif-5KG",
+              "expiration": "2027-06-15",
+              "shipmentId": "STAR-XSTKUVYDJSGGC",
+              "receivedCases": 81
+            },
+            {
+              "sku": "Roasted-Kadayif-5KG",
+              "expiration": "2027-12-12",
+              "shipmentId": "STAR-QSW73N2QRYHYW",
+              "receivedCases": 110
+            }
+          ],
+          "ownerApprovedAssumption": true
+        },
+        {
+          "sku": "Roasted-Kataifi-400g",
+          "stock": 4.0,
+          "expiration": "2027-06-15",
+          "days": 206,
+          "dailyTarget": 1,
+          "receivedShipmentEvidence": [
+            {
+              "sku": "Roasted-Kataifi-400g",
+              "expiration": "2027-06-15",
+              "shipmentId": "STAR-XKTUYCR4N3QZK",
+              "receivedCases": 34
+            }
+          ],
+          "ownerApprovedAssumption": true
+        }
+      ]
+    }
+  },
+  "storageEstimate": {
+    "sourceMonth": "2026-08",
+    "formula": "August estimated_monthly_storage_fee / average_quantity_on_hand / 31 * October 2 FBA warehouse quantity * 7",
+    "septemberReport": "CANCELLED",
+    "groupEstimates": {
+      "pistachio": 0.08,
+      "kataifi": 110.45,
+      "choco": 0.01
+    },
+    "excluded": "Unmatched FNSKUs, unknown September balances/surcharges, FBM warehouse storage, AWD storage. Estimates only.",
+    "includedOnceInProfit": true
+  },
+  "gapAudit": {
+    "checkedDate": "2026-10-05",
+    "additionalVelNeedRows": 4,
+    "pistachioHistoricalDate": "2026-06-15",
+    "pistachioCurrentExpiryUnconfirmed": true,
+    "roasted180CurrentExpiryUnconfirmed": true,
+    "septemberStorageReportStatus": "CANCELLED",
+    "storageEstimateRetained": true
+  }
+}
