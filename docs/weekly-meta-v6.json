@@ -1,0 +1,48 @@
+{
+  "period": [
+    "2026-09-24",
+    "2026-09-30"
+  ],
+  "timezone": "America/Phoenix",
+  "days": 7,
+  "stockBsrAsOf": "2026-10-02",
+  "feesEstimatedAsOf": "2026-10-03",
+  "adsAsOf": "2026-10-03",
+  "trackedOrderCount": 283,
+  "trackedSoldPacks": 304,
+  "chocolateShipments": 40,
+  "labelCost": 394.71,
+  "plannedIceQty": 165,
+  "plannedIceCost": 59.4,
+  "packCostEstimate": 24.8,
+  "costApproval": "Adil October 4: Raspberry $3.75/bar; confirmed bundles use selected landed cost \u00d7 bar count. Applied to September 24\u201330 by owner authorization.",
+  "missingCogSoldSkus": [],
+  "accountCharges": {
+    "AmazonUpstreamStorageTransportationFee": -30.27,
+    "FBARemovalFee": -21.84,
+    "FBAInboundTransportationFee": -771.96,
+    "AmazonUpstreamProcessingFee": -36.4
+  },
+  "accountChargesTotal": -860.47,
+  "velocity": {
+    "expiry": "2027-11-15",
+    "cutoffDaysBeforeExpiry": 50,
+    "stockSource": "Published INVENTORY warehouse ledger",
+    "stockAsOf": "2026-10-03",
+    "daysToCutoff": 358,
+    "stockLedgerSha256": "5e6c27abb5c2a3fb73c91faa925b0f8eea87361049b61e396944609f9a524f96",
+    "sharedPools": "Per-SKU pack capacity and daily target are alternative ways to clear one shared pool; never summed. VEL_DAYS combines weekly pack-to-bar consumption. Dedicated 12-pack stock separate. Unconfirmed pack identity remains blank."
+  },
+  "storageEstimate": {
+    "sourceMonth": "2026-08",
+    "formula": "August estimated_monthly_storage_fee / average_quantity_on_hand / 31 * October 2 FBA warehouse quantity * 7",
+    "septemberReport": "CANCELLED",
+    "groupEstimates": {
+      "pistachio": 0.08,
+      "kataifi": 110.45,
+      "choco": 0.01
+    },
+    "excluded": "Unmatched FNSKUs, unknown September balances/surcharges, FBM warehouse storage, AWD storage. Estimates only.",
+    "includedOnceInProfit": true
+  }
+}
